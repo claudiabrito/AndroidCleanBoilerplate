@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-26-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: androidcleanboilerplate-{{ checksum "build.gradle" }}-{{ checksum  "data/build.gradle" }}-{{ checksum  "domain/build.gradle" }}-{{ checksum  "presentation/build.gradle" }}
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: androidcleanboilerplate-{{ checksum "build.gradle" }}-{{ checksum  "data/build.gradle" }}-{{ checksum  "domain/build.gradle" }}-{{ checksum  "presentation/build.gradle" }}
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
+      - store_artifacts:
+          path: data/build/reports
+          destination: data-reports
+      - store_artifacts:
+          path: domain/build/reports
+          destination: domain-reports
+      - store_artifacts:
+          path: presentation/build/reports
+          destination: presentation-reports
+      - store_test_results:
+          path: data/build/test-results
+      - store_test_results:
+          path: domain/build/test-results
+      - store_test_results:
+          path: presentation/build/test-results
