@@ -35,4 +35,21 @@ subprojects { project ->
     google()
   }
 
+  apply plugin: 'checkstyle'
+
+  task checkstyle(type: Checkstyle) {
+    configFile rootProject.file("config/checkstyle/checkstyle.xml")
+    source 'src'
+    ignoreFailures false
+    showViolations true
+    include '**/*.java'
+
+    classpath = files()
+  }
+
+  afterEvaluate {
+    if (project.tasks.findByName('check')) {
+      check.dependsOn('checkstyle')
+    }
+  }
 }
