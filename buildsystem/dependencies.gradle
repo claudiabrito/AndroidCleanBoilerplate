@@ -1,10 +1,17 @@
 ext {
 
+  // Application
+  applicationId = "com.crebrito.androidclean"
+  testApplicationId = "com.crebrito.androidclean.test"
+  versionCode = 1
+  versionName = "1.0"
+
   // Android
   androidCompileSdkVersion = 26
   androidMinSdkVersion = 17
   androidTargetSdkVersion = 26
   androidBuildToolsVersion = "26.0.2"
+  androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
   // Libraries
   daggerVersion = "2.12"

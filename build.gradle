@@ -1,20 +1,9 @@
+apply from: 'buildsystem/dependencies.gradle'
+
 buildscript {
-  ext.versions = ['minSdk'        : 17,
-                  'compileSdk'    : 26,
+  ext.versions = ['androidPlugin' : '3.0.0-beta7']
 
-                  'supportLibrary': '26.0.2',
-                  'androidPlugin' : '3.0.0-beta7',
-                  'androidTools'  : '26.0.0-beta7']
-
-  ext.deps = [android  : ['runtime'     : 'com.google.android:android:4.1.1.4',
-                          'gradlePlugin': "com.android.tools.build:gradle:${versions.androidPlugin}",],
-              'support': ['compat'     : "com.android.support:support-compat:${versions.supportLibrary}",
-                          'annotations': "com.android.support:support-annotations:${versions.supportLibrary}",
-                          'test'       : ['runner': 'com.android.support.test:runner:1.0.1',],],
-              'lint'   : ['core'  : "com.android.tools.lint:lint:${versions.androidTools}",
-                          'api'   : "com.android.tools.lint:lint-api:${versions.androidTools}",
-                          'checks': "com.android.tools.lint:lint-checks:${versions.androidTools}",
-                          'tests' : "com.android.tools.lint:lint-tests:${versions.androidTools}",]]
+  ext.deps = [android  : ['gradlePlugin': "com.android.tools.build:gradle:${versions.androidPlugin}"]]
 
   repositories {
     mavenCentral()
@@ -52,4 +41,8 @@ subprojects { project ->
       check.dependsOn('checkstyle')
     }
   }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
 }
