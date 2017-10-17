@@ -53,7 +53,7 @@ android {
 }
 
 dependencies {
-  compile project(':domain')
+  implementation project(':domain')
 
   def dataDependencies = rootProject.ext.dataDependencies
   def dataTestDependencies = rootProject.ext.dataTestDependencies
