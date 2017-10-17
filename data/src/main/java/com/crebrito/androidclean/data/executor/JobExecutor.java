@@ -13,10 +13,8 @@ import javax.inject.Singleton;
   private final ThreadPoolExecutor executor;
 
   @Inject public JobExecutor() {
-    this.executor =
-        new ThreadPoolExecutor(3, 5, 10, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(),
-            new JobThreadFactory());
-  }
+    this.executor = new ThreadPoolExecutor(3, 5, 10,
+        TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new JobThreadFactory()); }
 
   @Override public void execute(Runnable runnable) {
     this.executor.execute(runnable);

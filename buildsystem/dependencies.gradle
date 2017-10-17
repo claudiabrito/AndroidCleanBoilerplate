@@ -99,5 +99,6 @@ ext {
                                   espressoIdlingResource: "com.android.support.test.espresso:espresso-idling-resource:${espressoVersion}"]
 
   developmentDependencies =
-      [leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"]
+      [leakCanaryDebug  : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+       leakCanaryRelease: "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"]
 }

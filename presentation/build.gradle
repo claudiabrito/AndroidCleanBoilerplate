@@ -72,6 +72,9 @@ android {
 }
 
 dependencies {
+  implementation project(':domain')
+  implementation project(':data')
+
   def presentationDependencies = rootProject.ext.presentationDependencies
   def presentationTestDependencies = rootProject.ext.presentationTestDependencies
   def developmentDependencies = rootProject.ext.developmentDependencies
@@ -116,7 +119,8 @@ dependencies {
   androidTestImplementation presentationDependencies.recyclerviewV7
   androidTestImplementation presentationDependencies.design
 
-  debugImplementation developmentDependencies.leakCanary
+  debugImplementation developmentDependencies.leakCanaryDebug
+  releaseImplementation developmentDependencies.leakCanaryRelease
 }
 
 checkstyle {
